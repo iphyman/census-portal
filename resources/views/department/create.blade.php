@@ -1,4 +1,5 @@
 <x-app-layout>
+    @include('department.navbar')
     <div class="w-100 d-flex justify-content-center">
         <div class="card shadow-sm npc-card">
             <div class="card-header">
