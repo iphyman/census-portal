@@ -1,0 +1,89 @@
+// Import all of Bootstrap's CSS
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.npc-body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f2f4f9;
+}
+.npc-navbar {
+    height: 90px;
+    background-color: #ffffff !important;
+    position: relative;
+}
+.npc-footer {
+    width: 100%;
+    background-color: #3a3a3a;
+    padding-top: 40px;
+    padding-bottom: 8px;
+    h6 {
+        color: #ffffff;
+    }
+    ul {
+        padding: 0px;
+        margin: 0px;
+        list-style: none;
+        li {
+            position: relative;
+            margin-bottom: 12px;
+            a {
+                font-size: 16px;
+                color: #e2eaf2;
+                text-decoration: none;
+                &:hover {
+                    color: #01903b;
+                    font-weight: 600;
+                    transition: all 0.25s ease;
+                }
+            }
+        }
+    }
+    .copy {
+        font-size: 12px;
+        color: #e2eaf2;
+    }
+}
+.npc-card {
+    max-width: 620px;
+    width: 100%;
+    border-radius: 12px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.npc-sidebar {
+    width: 220px;
+    min-height: calc(100vh - 90px);
+    background-color: #ffffff;
+    .link {
+        width: 100%;
+        text-decoration: none;
+        color: #000000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    .link-icon {
+        width: 48px;
+        height: 48px;
+        background-color: #01903b;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 24px;
+    }
+}
+.npc-profile-btn {
+    width: 48px;
+    height: 48px;
+    background-color: transparent;
+    appearance: none;
+    border: none;
+    padding: 0px;
+}
