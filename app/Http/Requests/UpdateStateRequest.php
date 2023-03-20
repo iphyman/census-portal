@@ -22,7 +22,12 @@ class UpdateStateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'capital' => ['required', 'string', 'min:3', 'max:255'],
+            'demonym' => ['required', 'string', 'min:3', 'max:255'],
+            'land_area' => ['required', 'numeric'],
+            'postal_code' => ['required', 'numeric'],
+            'iso_code' => ['required', 'string']
         ];
     }
 }

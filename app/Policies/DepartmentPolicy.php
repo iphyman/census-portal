@@ -13,7 +13,7 @@ class DepartmentPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 
     /**
@@ -21,7 +21,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department): bool
     {
-        //
+        return Department::find($user->department_id)->access_level === $department->access_level;
     }
 
     /**
@@ -29,7 +29,7 @@ class DepartmentPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 
     /**
@@ -37,7 +37,7 @@ class DepartmentPolicy
      */
     public function update(User $user, Department $department): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 
     /**
@@ -45,7 +45,7 @@ class DepartmentPolicy
      */
     public function delete(User $user, Department $department): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 
     /**
@@ -53,7 +53,7 @@ class DepartmentPolicy
      */
     public function restore(User $user, Department $department): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 
     /**
@@ -61,6 +61,6 @@ class DepartmentPolicy
      */
     public function forceDelete(User $user, Department $department): bool
     {
-        //
+        return Department::find($user->department_id)->access_level >= 2;
     }
 }

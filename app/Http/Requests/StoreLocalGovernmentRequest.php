@@ -22,7 +22,9 @@ class StoreLocalGovernmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:3', 'max:255'],
+            'state_id' => ['required', 'numeric'],
+            'land_area' => ['required', 'numeric'],
         ];
     }
 }

@@ -6,12 +6,15 @@ export default defineConfig({
     resolve: {
         alias: {
             "~bootstrap": path.resolve(__dirname, "node_modules/bootstrap"),
-            "~bootstrap-icons": path.resolve(__dirname, "node_modules/bootstrap-icons"),
+            "~bootstrap-icons": path.resolve(
+                __dirname,
+                "node_modules/bootstrap-icons"
+            ),
         },
     },
     plugins: [
         laravel({
-            input: ["resources/css/app.css", "resources/js/app.js"],
+            input: ["resources/scss/app.scss", "resources/js/app.js"],
             refresh: true,
         }),
     ],

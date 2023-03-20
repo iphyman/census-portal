@@ -34,7 +34,9 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        notify()->success('Profile updated!');
+
+        return Redirect::route('profile.edit');
     }
 
     /**
@@ -42,19 +44,21 @@ class ProfileController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
+        // $request->validateWithBag('userDeletion', [
+        //     'password' => ['required', 'current-password'],
+        // ]);
 
-        $user = $request->user();
+        // $user = $request->user();
 
-        Auth::logout();
+        // Auth::logout();
 
-        $user->delete();
+        // $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
 
-        return Redirect::to('/');
+        // notify()->success('Staff details deleted!');
+
+        return Redirect::route('profile.edit');
     }
 }

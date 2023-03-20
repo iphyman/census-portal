@@ -2,85 +2,93 @@
     @include('people.navbar')
     <div class="w-100 d-flex justify-content-center">
         <div class="card shadow-sm npc-card">
-            <div class="card-header">
-                <h4 class="text-center">Register citizen</h4>
+            <div class="card-header bg-success">
+                <h4 class="text-center text-white">Register citizen</h4>
             </div>
             <div class="card-body p-5">
-                <form method="POST" action="{{ route('state.store') }}">
+                <form method="POST" action="{{ route('people.store') }}">
                     @csrf
 
                     <!-- First Name -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('first_name')) is-invalid @endif">
+                        <div class="form-floating @error('first_name') is-invalid @endif">
                             <input id="first_name"
-                                class="form-control form-control-lg @if ($errors->has('first_name')) is-invalid @endif"
-                                type="text" name="first_name" value="{{ old('first_name') }}" placeholder="First Name"
-                                required />
+                                class="form-control form-control-lg @error('first_name') is-invalid @endif" type="text"
+                                name="first_name" value="{{ old('first_name') }}" placeholder="First Name" required />
                             <label for="first_name" class="form-label">First Name</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('first_name'))</div>
+                        @error('first_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Last Name -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('last_name')) is-invalid @endif">
+                        <div class="form-floating @error('last_name') is-invalid @enderror">
                             <input id="last_name"
-                                class="form-control form-control-lg @if ($errors->has('last_name')) is-invalid @endif"
+                                class="form-control form-control-lg @error('residential_area') is-invalid @enderror"
                                 type="text" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name"
                                 required />
                             <label for="last_name" class="form-label">Last Name</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('last_name'))</div>
+                        @error('last_name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- DOB -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('dob')) is-invalid @endif">
-                            <input id="dob"
-                                class="form-control form-control-lg @if ($errors->has('dob')) is-invalid @endif"
+                        <div class="form-floating @error('dob') is-invalid @enderror">
+                            <input id="dob" class="form-control form-control-lg @error('dob') is-invalid @enderror"
                                 type="date" name="dob" value="{{ old('dob') }}" placeholder="Date of birth" required />
                             <label for="dob" class="form-label">Date of birth</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('dob'))</div>
+                        @error('dob')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- State -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('state_id')) is-invalid @endif">
-                            <select class="form-select" id="state_id">
+                        <div class="form-floating @error('state_id') is-invalid @enderror">
+                            <select class="form-select" id="state_id" name="state_id">
                                 <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                @foreach ($states as $state)
+                                <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                @endforeach
                             </select>
                             <label for="state_id" class="form-label">Select State</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('state_id'))</div>
+                        @error('state_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- LGA -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('local_government_id')) is-invalid @endif">
-                            <select class="form-select" id="local_government_id">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                        <div class="form-floating @error('local_government_id') is-invalid @enderror">
+                            <select class="form-select" id="local_government_id" name="local_government_id">
+                                <option>Select State first</option>
                             </select>
                             <label for="local_government_id" class="form-label">Select LGA</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('local_government_id'))</div>
+                        @error('local_government_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Residential Area -->
                     <div class="input-group has-validation mb-3">
-                        <div class="form-floating @if ($errors->has('residential_area')) is-invalid @endif">
+                        <div class="form-floating @error ('residential_area') is-invalid @enderror">
                             <textarea id="residential_area"
-                                class="form-control form-control-lg @if ($errors->has('residential_area')) is-invalid @endif"
+                                class="form-control form-control-lg @error ('residential_area') is-invalid @enderror"
                                 name="residential_area" placeholder="Residential Area"
                                 required>{{__(old('residential_area'))}}</textarea>
                             <label for="residential_area" class="form-label">Residential Area</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('residential_area'))</div>
+                        @error('residential_area')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Gender -->
@@ -104,19 +112,24 @@
                                 Both
                             </label>
                         </div>
+                        @error('sex')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Marital status -->
                     <div class="d-grid mb-3">
                         <label for="gender" class="form-label">Marital status</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marital_status" value="Single" id="single" checked>
+                            <input class="form-check-input" type="radio" name="marital_status" value="Single"
+                                id="single" checked>
                             <label class="form-check-label" for="single">
                                 Single
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="marital_status" value="Married" id="married">
+                            <input class="form-check-input" type="radio" name="marital_status" value="Married"
+                                id="married">
                             <label class="form-check-label" for="married">
                                 Married
                             </label>
@@ -128,6 +141,9 @@
                                 Divorced
                             </label>
                         </div>
+                        @error('marital_status')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <!-- Occupation -->
@@ -142,4 +158,25 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function (){
+            $('#state_id').on('change', function() {
+                var state_id = this.value;
+                
+                $.ajax({
+                    url: '/state/' + state_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response){
+                        $('#local_government_id').html('<option>Select LGA</option>');
+                        $.each(response.lgas, function(key, data) {
+                            $('#local_government_id').append('<option value="' + data.id + '">' + data.name + '</option>');
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+    @endpush
 </x-app-layout>

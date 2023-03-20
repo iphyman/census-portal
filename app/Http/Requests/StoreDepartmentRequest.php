@@ -23,7 +23,8 @@ class StoreDepartmentRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
-            'description' => ['required', 'string', 'min:10', 'max:255']
+            'description' => ['required', 'string', 'min:10', 'max:255'],
+            'access_level' => ['required', 'numeric'],
         ];
     }
 }

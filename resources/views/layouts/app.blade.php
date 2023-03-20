@@ -14,6 +14,7 @@
 
     <!-- Scripts -->
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
+    @notifyCss
 </head>
 
 <body class="npc-body">
@@ -26,7 +27,11 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <x:notify-messages />
+    @notifyJs
     @include('layouts.footer')
+    @stack('scripts')
 </body>
 
 </html>

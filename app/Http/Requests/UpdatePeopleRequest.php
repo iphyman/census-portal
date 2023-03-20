@@ -22,7 +22,15 @@ class UpdatePeopleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => ['required', 'string', 'min:3', 'max:255'],
+            'last_name' => ['required', 'string', 'min:3', 'max:255'],
+            'dob' => ['required'],
+            'state_id' => ['required', 'numeric'],
+            'local_government_id' => ['required', 'numeric'],
+            'residential_area' => ['required', 'string'],
+            'sex' => ['required', 'string'],
+            'marital_status' => ['required', 'string'],
+            // 'occupation' => ['required', 'string']
         ];
     }
 }

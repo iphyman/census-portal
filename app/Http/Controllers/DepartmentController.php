@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\DepartmentsDataTable;
 use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 
 class DepartmentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(DepartmentsDataTable $dataTable)
     {
-        $departments = Department::all();
-
-        return view('department.index', $departments);
+        return $dataTable->render('department.index');
     }
 
     /**
@@ -33,10 +33,13 @@ class DepartmentController extends Controller
     {
         Department::create([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'access_level' => $request->access_level
         ]);
 
-        return back()->with('success', 'Department created successfully');
+        notify()->success('Department created successfully');
+
+        return back();
     }
 
     /**
@@ -50,31 +53,35 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Department $department)
+    public function edit(Department $id)
     {
-        return view("state.edit", $department);
+        return view("department.edit", ['department' => $id]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDepartmentRequest $request, Department $department)
+    public function update(UpdateDepartmentRequest $request, Department $id)
     {
-        $department->update([
+        $id->update([
             'name' => $request->name,
-            'description' => $request->description
+            'description' => $request->description,
+            'access_level' => $request->access_level
         ]);
 
-        return back()->with('success', 'Department updated!');
+        notify()->success('Department updated!');
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
+    public function destroy(Department $id)
     {
-        $department->delete();
-
-        return back()->with('success', 'Department deleted!');
+        $id->delete();
+        notify()->success('Department deleted!');
+        
+        return back();
     }
 }

@@ -18,7 +18,7 @@
                                 autocomplete="name" />
                             <label for="name" class="form-label">Name</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('name'))</div>
+                        <div class="invalid-feedback">{{ $errors->get('name') }}</div>
                     </div>
 
                     <!-- Land Area -->
@@ -31,7 +31,7 @@
                             <label for="land_area" class="form-label">Land Area</label>
                         </div>
                         <span class="input-group-text">KM<sup>2</sup></span>
-                        <div class="invalid-feedback">__($errors->get('land_area'))</div>
+                        <div class="invalid-feedback">{{ $errors->get('land_area') }}</div>
                     </div>
 
                     <!-- Postal Code -->
@@ -50,15 +50,15 @@
                     <div class="input-group has-validation mb-3">
                         <div class="form-floating @if ($errors->has('state_id')) is-invalid @endif">
                             <select class="form-select" id="state_id">
-                                <option selected>Open this select menu</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                                <option selected>Choose a state</option>
+                                @foreach ($states as $state)
+                                <option value="{{$state->id}}">{{$state->name}}</option>
+                                @endforeach
                             </select>
                             <label for="state_id" class="form-label">Select State</label>
                         </div>
-                        <div class="invalid-feedback">__($errors->get('state_id'))</div>
-                    </div>
+                        <div class="invalid-feedback">{{ $errors->get('state_id') }}</div>
+                    </div>F
 
                     <div class="d-grid gap-2 mt-3">
                         <button class="btn btn-primary btn-lg">

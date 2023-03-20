@@ -17,7 +17,7 @@ class LocalGovernmentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => '',
+            'name' => 'Abakaliki',
             'state_id' => 1,
             'land_area' => 150,
         ];
